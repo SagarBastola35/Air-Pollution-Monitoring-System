@@ -1,0 +1,247 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    />
+    <title>AirVision | Air Pollution Monitoring System</title>
+    <!-- Google Fonts & simple CSS reset -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <!-- Font Awesome 6 (free icons) -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar">
+      <div class="nav-container">
+        <div class="logo">
+          <i class="fas fa-leaf"></i>
+          <span>AirVision</span>
+        </div>
+        <ul class="nav-links" id="navLinks">
+          <li><a href="#dashboard" class="active">Dashboard</a></li>
+          <li><a href="#stations">Monitoring Stations</a></li>
+          <li><a href="#health">Health Impact</a></li>
+          <li><a href="#resources">Resources</a></li>
+        </ul>
+        <div class="hamburger" id="hamburger">
+          <i class="fas fa-bars"></i>
+        </div>
+      </div>
+    </nav>
+
+    <main>
+      <!-- Hero / Dashboard Section -->
+      <section id="dashboard" class="section">
+        <div class="container">
+          <div class="hero-content">
+            <h1>Air Quality <span class="gradient-text">Intelligence</span></h1>
+            <p>
+              Real-time pollution monitoring • Health-first insights • Smart
+              alerts
+            </p>
+          </div>
+
+          <!-- Main Air Quality Card (Global AQI) -->
+          <div class="aqi-main-card" id="aqiMainCard">
+            <div class="aqi-gauge">
+              <div class="aqi-value" id="globalAqiValue">--</div>
+              <div class="aqi-label">Air Quality Index (AQI)</div>
+              <div class="aqi-status" id="aqiStatus">Loading...</div>
+            </div>
+            <div class="aqi-details">
+              <div class="detail-item">
+                <i class="fas fa-smog"></i>
+                <span>PM2.5</span>
+                <strong id="pm25Val">--</strong> <span class="unit">µg/m³</span>
+              </div>
+              <div class="detail-item">
+                <i class="fas fa-wind"></i>
+                <span>PM10</span>
+                <strong id="pm10Val">--</strong> <span class="unit">µg/m³</span>
+              </div>
+              <div class="detail-item">
+                <i class="fas fa-microphone-alt"></i>
+                <span>NO₂</span>
+                <strong id="no2Val">--</strong> <span class="unit">ppb</span>
+              </div>
+              <div class="detail-item">
+                <i class="fas fa-tint"></i>
+                <span>O₃</span>
+                <strong id="o3Val">--</strong> <span class="unit">ppb</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- secondary metrics row -->
+          <div class="metrics-row">
+            <div class="metric-card">
+              <i class="fas fa-temperature-low"></i>
+              <h3>Temperature</h3>
+              <div class="metric-value" id="tempVal">--°C</div>
+            </div>
+            <div class="metric-card">
+              <i class="fas fa-tachometer-alt"></i>
+              <h3>Humidity</h3>
+              <div class="metric-value" id="humidVal">--%</div>
+            </div>
+            <div class="metric-card">
+              <i class="fas fa-chart-line"></i>
+              <h3>Trend</h3>
+              <div class="metric-value" id="trendVal">
+                <i class="fas fa-chart-line"></i> Live
+              </div>
+            </div>
+          </div>
+
+          <!-- Alert Banner -->
+          <div class="alert-banner" id="alertBanner" style="display: none">
+            <i class="fas fa-exclamation-triangle"></i>
+            <span id="alertMessage"
+              >Unhealthy air quality detected! Limit outdoor activities.</span
+            >
+          </div>
+        </div>
+      </section>
+
+      <!-- Stations Section -->
+      <section id="stations" class="section bg-light">
+        <div class="container">
+          <div class="section-header">
+            <h2><i class="fas fa-map-marker-alt"></i> Monitoring Stations</h2>
+            <p>Live data from urban & suburban sensors</p>
+          </div>
+          <div class="stations-grid" id="stationsGrid">
+            <!-- dynamic cards injected via JS -->
+          </div>
+        </div>
+      </section>
+
+      <!-- Health Impact Section -->
+      <section id="health" class="section">
+        <div class="container">
+          <div class="section-header">
+            <h2><i class="fas fa-heartbeat"></i> Health Impact Guide</h2>
+            <p>Understand AQI levels and precautions</p>
+          </div>
+          <div class="health-cards">
+            <div class="health-card good">
+              <div class="level">Good (0-50)</div>
+              <p>Air quality is satisfactory, little to no risk.</p>
+              <i class="fas fa-smile-wink"></i>
+            </div>
+            <div class="health-card moderate">
+              <div class="level">Moderate (51-100)</div>
+              <p>
+                Acceptable; sensitive individuals may experience minor symptoms.
+              </p>
+              <i class="fas fa-meh"></i>
+            </div>
+            <div class="health-card unhealthy-sensitive">
+              <div class="level">Unhealthy for Sensitive (101-150)</div>
+              <p>Members of sensitive groups may experience health effects.</p>
+              <i class="fas fa-lungs"></i>
+            </div>
+            <div class="health-card unhealthy">
+              <div class="level">Unhealthy (151-200)</div>
+              <p>Everyone may begin to experience health effects.</p>
+              <i class="fas fa-head-side-mask"></i>
+            </div>
+            <div class="health-card very-unhealthy">
+              <div class="level">Very Unhealthy (201-300)</div>
+              <p>Health alert: everyone may experience more serious effects.</p>
+              <i class="fas fa-skull-crosswalk"></i>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Resources Section -->
+      <section id="resources" class="section bg-light">
+        <div class="container">
+          <div class="section-header">
+            <h2><i class="fas fa-book-open"></i> Clean Air Resources</h2>
+            <p>Tips & guides to reduce exposure</p>
+          </div>
+          <div class="resources-grid">
+            <div class="resource-card">
+              <i class="fas fa-home"></i>
+              <h3>Indoor Air Quality</h3>
+              <p>
+                Use HEPA filters, maintain ventilation, avoid indoor pollutants.
+              </p>
+            </div>
+            <div class="resource-card">
+              <i class="fas fa-mask"></i>
+              <h3>Protective Gear</h3>
+              <p>
+                N95 masks reduce particle exposure during high pollution days.
+              </p>
+            </div>
+            <div class="resource-card">
+              <i class="fas fa-tree"></i>
+              <h3>Green Spaces</h3>
+              <p>Visit parks away from traffic; indoor plants improve air.</p>
+            </div>
+            <div class="resource-card">
+              <i class="fas fa-charging-station"></i>
+              <h3>Low Emission Travel</h3>
+              <p>Use public transport, carpool, or electric vehicles.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="footer-container">
+        <div class="footer-brand">
+          <i class="fas fa-leaf"></i> AirVision
+          <p>Real-time pollution intelligence for healthier tomorrows.</p>
+        </div>
+        <div class="footer-links">
+          <h4>Monitoring</h4>
+          <ul>
+            <li><a href="#dashboard">AQI Dashboard</a></li>
+            <li><a href="#stations">Station Map</a></li>
+            <li><a href="#health">Health Guide</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h4>Legal</h4>
+          <ul>
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">Terms of Use</a></li>
+          </ul>
+        </div>
+        <div class="footer-newsletter">
+          <h4>Stay updated</h4>
+          <p>Get air quality alerts</p>
+          <div class="subscribe">
+            <input type="email" placeholder="Your email" id="subEmail" />
+            <button id="subBtn"><i class="fas fa-paper-plane"></i></button>
+          </div>
+          <small id="subMsg"></small>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>
+          &copy; 2025 AirVision – Monitoring for a breathable future. Real-time
+          simulated data for demo.
+        </p>
+      </div>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
